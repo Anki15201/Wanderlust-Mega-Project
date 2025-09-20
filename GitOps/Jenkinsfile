@@ -58,22 +58,28 @@ pipeline {
                 script{
                     withCredentials([gitUsernamePassword(credentialsId: 'Github-login', gitToolName: 'Default')]) {
                         sh '''
-                        echo "Setting Git user config"
-                        git config user.name "Anki15201"
-                        git config user.email "aniketbusiness15@gmail.com"  # Replace with your actual email
-        
-                        echo "Checking repository status: "
-                        git status
-        
-                        echo "Adding changes to git: "
-                        git add .
-        
-                        echo "Committing changes: "
-                        git commit -m "Updated environment variables" || true  # Ignores if no changes
-        
-                        echo "Pushing changes to github: "
-                        git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Anki15201/Wanderlust-Mega-Project.git main
-                        '''
+                            echo "Setting Git user config"
+                            git config user.name "Anki15201"
+                            git config user.email "aniketbusiness15@gmail.com"
+
+                            echo "Fetching latest changes"
+                            git fetch origin
+
+                            echo "Checking out main branch"
+                            git checkout main || git checkout -b main  # Switch to main, or create if it doesn't exist
+
+                            echo "Checking repository status: "
+                            git status
+
+                            echo "Adding changes to git: "
+                            git add .
+
+                            echo "Committing changes: "
+                            git commit -m "Updated environment variables" || true  # Ignores if no changes
+
+                            echo "Pushing changes to GitHub: "
+                            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Anki15201/Wanderlust-Mega-Project.git main
+                            '''
                     }
                 }
             }
