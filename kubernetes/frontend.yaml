@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: anki15201/wanderlust-frontend:v6
+          image: anki15201/wanderlust-frontend:v2
           ports:
             - containerPort: 5173
 ---

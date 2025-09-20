@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: anki15201/wanderlust-backend:v6
+          image: anki15201/wanderlust-backend:v2
           ports:
             - containerPort: 8080
 ---
